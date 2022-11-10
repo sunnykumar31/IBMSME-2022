@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+  <style>
+    #heading{
+        width: 800px;
+        height: 50px;
+        font-size: 25px;
+        font-weight: bolder;
+        color: rgb(2, 43, 29);
+    }
+  </style>
+</head>
+<body>
+    <div id="heading">Subjects Vs Marks</div>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic bar chart example, with value labels shown upon mouse hover.",
+  "width": 600,
+  "height": 400,
+  "padding": 10,
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {"category": "ATF", "marks": 26},
+        {"category": "DM", "marks": 24},
+        {"category": "BI", "marks": 25},
+        {"category": "SE", "marks": 26},
+        {"category": "Math", "marks": 30},
+        {"category": "Web-D", "marks": 20},
+        {"category": "CP", "marks": 26}
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "tooltip",
+      "value": {},
+      "on": [
+        {"events": "rect:mouseover", "update": "datum"},
+        {"events": "rect:mouseout", "update": "{}"}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "type": "band",
+      "domain": {"data": "table", "field": "category"},
+      "range": "width",
+      "padding": 0.30,
+      "round": true
+    },
+    {
+      "name": "yscale",
+      "domain": {"data": "table", "field": "marks"},
+      "nice": true,
+      "range": "height"
+    }
+  ],
+  "axes": [
+    {"orient": "bottom", "scale": "xscale"},
+    {"orient": "left", "scale": "yscale"}
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "table"},
+      "encode": {
+        "enter": {
+          "x": {"scale": "xscale", "field": "category"},
+          "width": {"scale": "xscale", "band": 1},
+          "y": {"scale": "yscale", "field": "marks"},
+          "y2": {"scale": "yscale", "value": 0}
+        },
+        "update": {"fill": {"value": "Orange"}},
+        "hover": {"fill": {"value": "Blue"}}
+      }
+    },
+    {
+      "type": "text",
+      "encode": {
+        "enter": {
+          "align": {"value": "center"},
+          "baseline": {"value": "bottom"},
+          "fill": {"value": "#333"}
+        },
+        "update": {
+          "x": {"scale": "xscale", "signal": "tooltip.category", "band": 0.5},
+          "y": {"scale": "yscale", "signal": "tooltip.marks", "offset": -2},
+          "text": {"signal": "tooltip.marks"},
+          "fillOpacity": [
+            {"test": "datum === tooltip", "value": 0},
+            {"value": 1}
+          ]
+        }
+      }
+    }
+  ],
+  "config": {}
+};
+    vegaEmbed("#vis", spec, {mode: "vega"}).then(console.log).catch(console.warn);
+  </script>
+  <div><ul type:"none">
+    <li>ATF:Automata and formal language</li>
+    <li>DM:Data Mining</li>
+    <li>BI:Business Inteligence</li>
+    <li>SE:Software Engnerring</li>
+    <li>Math:Descrete MAthematics</li>
+    <li>Web_D:Web Development</li>
+    <li>Cp:Competative Programing</li>
+  </ul></div>
+</body>
+</html>

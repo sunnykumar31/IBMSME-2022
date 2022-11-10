@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
+  <style>
+    #heading{
+        width: 800px;
+        height: 50px;
+        font-size: 25px;
+        font-weight: bolder;
+        color: rgb(2, 43, 29);
+    }
+  </style>
+</head>
+<body>
+    <div id="heading">V.Kholi,MS Dhoni and Sachin Tendulkar Average Vs all the mention team</div>
+    <div id="disc"><li style="color: blue;">V Kholi</li>
+        <li style="color: orange;">MSD</li>
+        <li style="color: red
+        ;">Sachin </li>
+    </div>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "A basic line chart example.",
+  "width": 700,
+  "height": 400,
+  "padding": 10,
+  "signals": [
+    {
+      "name": "interpolate",
+      "value": "linear",
+      "bind": {
+        "input": "select",
+        "options": [
+          "basis",
+          "cardinal",
+          "catmull-rom",
+          "linear",
+          "monotone",
+          "natural",
+          "step",
+          "step-after",
+          "step-before"
+        ]
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "table",
+      "values": [
+        {"x": "AUS", "y": 67, "c":0}, {"x": "AUS", "y": 45, "c":1},{"x": "AUS", "y": 45, "c":2},
+        {"x": "NZ", "y": 60, "c":0}, {"x": "NZ", "y": 49, "c":1},{"x": "NZ", "y": 46, "c":2},
+        {"x": "ENG", "y": 43, "c":0}, {"x": "ENG", "y": 47, "c":1},{"x": "ENG", "y": 44, "c":2},
+        {"x": "PAK", "y": 49, "c":0}, {"x": "PAK", "y": 54, "c":1},{"x": "PAK", "y": 40, "c":2},
+        {"x": "SA", "y": 61, "c":0}, {"x": "SA", "y": 32, "c":1},{"x": "SA", "y": 36, "c":2},
+        {"x": "AF", "y": 67, "c":0}, {"x": "AF", "y": 18, "c":1},{"x": "AF", "y": 50, "c":2},
+        {"x": "SL", "y": 60, "c":0}, {"x": "SL", "y": 64, "c":1},{"x": "SL", "y": 44,"c":2},
+        {"x": "WI", "y": 66, "c":0}, {"x": "WI", "y": 56, "c":1},{"x": "WI", "y": 52, "c":2},
+        {"x": "BA", "y": 76, "c":0}, {"x": "BA", "y": 45, "c":1},{"x": "BA", "y": 50, "c":2},
+        {"x": "IL", "y": 78, "c":0}, {"x": "IL", "y": 34, "c":1},{"x": "IL", "y": 21, "c":2}
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "point",
+      "range": "width",
+      "domain": {"data": "table", "field": "x"}
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "range": "height",
+      "nice": true,
+      "zero": true,
+      "domain": {"data": "table", "field": "y"}
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "range": "category",
+      "domain": {"data": "table", "field": "c"}
+    }
+  ],
+  "axes": [
+    {"orient": "bottom", "scale": "x"},
+    {"orient": "left", "scale": "y"}
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "from": {"facet": {"name": "series", "data": "table", "groupby": "c"}},
+      "marks": [
+        {
+          "type": "line",
+          "from": {"data": "series"},
+          "encode": {
+            "enter": {
+              "x": {"scale": "x", "field": "x"},
+              "y": {"scale": "y", "field": "y"},
+              "stroke": {"scale": "color", "field": "c"},
+              "strokeWidth": {"value": 2}
+            },
+            "update": {
+              "interpolate": {"signal": "interpolate"},
+              "strokeOpacity": {"value": 1}
+            },
+            "hover": {"strokeOpacity": {"value": 0.5}}
+          }
+        }
+      ]
+    }
+  ],
+  "config": {}
+};
+    vegaEmbed("#vis", spec, {mode: "vega"}).then(console.log).catch(console.warn);
+  </script>
+</body>
+</html>
