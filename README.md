@@ -20,9 +20,9 @@ Data visualization is the graphical representation of information and data. By u
 ### Data Flow
 Dataflow is used for processing & enriching batch or stream data for use cases such as analysis, machine learning or data warehousing. Dataflow is a serverless, fast and cost-effective service that supports both stream and batch processing.
 ### Tool Used-
-[Designer Cloud Powered by TRIFACTA )](https://vega.github.io/vega/examples/)
+[Designer Cloud Powered by TRIFACTA )](https://cloud.trifacta.com/flows/202651?recipe=1738845&tab=recipe&workspace=sunnykumarcsda20-9kub)
 
-Super Store DataSet Data Flow
+Super Store DataSet Data Flow [SuperDataScience](https://www.superdatascience.com/pages/powerbi)
 
 ![image](https://user-images.githubusercontent.com/102225276/201422583-2c3a9fde-1774-4163-b9af-e3b0141a659a.png)
 
