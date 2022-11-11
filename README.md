@@ -16,7 +16,7 @@ Data visualization is the graphical representation of information and data. By u
 ### Virat kholi,MSD and Sachin Tendulkar Average graph
 ![image](https://user-images.githubusercontent.com/102225276/201232688-2ea98496-7e4d-434d-a271-60aecec93e01.png)
 #### semster subjects Vs Marks
-![image](https://user-images.githubusercontent.com/102225276/201232857-4429ed5c-6f24-4364-8a04-bab37122c3f3.png)
+![image](https://user-images.githubusercontent.com/102225276/201234905-682d354d-82b6-4899-a98d-5dffca01da5a.png)
 
 
 
